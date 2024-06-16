@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Text, VStack, Box, Image, SimpleGrid, Spinner, Heading } from "@chakra-ui/react";
-import axios from 'axios';
 import * as cheerio from 'cheerio';
 
 const Index = () => {
@@ -10,8 +9,8 @@ const Index = () => {
   useEffect(() => {
     const fetchGroceries = async () => {
       try {
-        const response = await axios.get('https://www.rbpatel.com/shop/page/1');
-        const html = response.data;
+        const response = await fetch('https://www.rbpatel.com/shop/page/1');
+        const html = await response.text();
         const $ = cheerio.load(html);
         const items = [];
 
