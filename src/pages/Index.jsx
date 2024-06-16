@@ -10,6 +10,9 @@ const Index = () => {
     const fetchGroceries = async () => {
       try {
         const response = await fetch('https://www.rbpatel.com/shop/page/1');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const html = await response.text();
         const $ = cheerio.load(html);
         const items = [];
@@ -21,6 +24,7 @@ const Index = () => {
           items.push({ title, price, image });
         });
 
+        console.log('Fetched items:', items); // Debug log
         setGroceries(items);
         setLoading(false);
       } catch (error) {
