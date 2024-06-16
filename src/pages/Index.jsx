@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Text, VStack, Box, Image, SimpleGrid, Spinner } from "@chakra-ui/react";
+import { Container, Text, VStack, Box, Image, SimpleGrid, Spinner, Heading } from "@chakra-ui/react";
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
@@ -36,13 +36,13 @@ const Index = () => {
   return (
     <Container centerContent maxW="container.xl" py={10}>
       <VStack spacing={4}>
-        <Text fontSize="3xl" fontWeight="bold">Grocery Items</Text>
+        <Heading fontSize="4xl" fontWeight="bold">Grocery Items</Heading>
         {loading ? (
           <Spinner size="xl" />
         ) : (
           <SimpleGrid columns={[1, 2, 3]} spacing={10}>
             {groceries.map((item, index) => (
-              <Box key={index} borderWidth="1px" borderRadius="lg" overflow="hidden" p={5}>
+              <Box key={index} borderWidth="1px" borderRadius="lg" overflow="hidden" p={5} boxShadow="md">
                 <Image src={item.image} alt={item.title} boxSize="200px" objectFit="cover" mx="auto" />
                 <Text mt={2} fontSize="xl" fontWeight="semibold">{item.title}</Text>
                 <Text mt={2} color="green.500" fontSize="lg">{item.price}</Text>
